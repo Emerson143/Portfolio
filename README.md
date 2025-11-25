@@ -2,8 +2,7 @@
 
 Bem-vindo ao repositório do meu portfolio pessoal. Este projeto foi desenvolvido para apresentar minha trajetória profissional, habilidades técnicas e projetos em destaque, com um design moderno e interativo.
 
-![Preview](./preview.png)
-*(Adicione uma captura de tela do seu portfolio aqui se desejar)*
+
 
 ## 🚀 Sobre o Projeto
 
