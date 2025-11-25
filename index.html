@@ -1,241 +1,311 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emerson Oliveira | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emerson Oliveira | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">EO.</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#experience">Experiência</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="#contact">Contato</a></li>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">EO.</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#experience">Experiência</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#projects">Projetos</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <div class="pill">Back-End .NET • Integrações • Automação</div>
+        <h1>Construo experiências digitais com dados, automação e .NET.</h1>
+        <p class="lead">
+          Emerson Oliveira — desenvolvedor back-end e analista de sistemas. Especialista em integrações, CRM Dynamics 365 e fluxos que deixam times mais rápidos.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Vamos conversar</a>
+          <a href="#projects" class="btn-secondary">Ver projetos</a>
+        </div>
+        <div class="hero-meta">
+          <div>
+            <span class="meta-label">Atuação</span>
+            <p>Automação, APIs REST, Power Platform</p>
+          </div>
+          <div>
+            <span class="meta-label">Local</span>
+            <p>São Paulo — Brasil</p>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/emerson-oliveira143/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Emerson143" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:emerson143.eo@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-canvas-card">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Interativo</p>
+            <h3>Cubo mágico 3D</h3>
+          </div>
+          <span class="badge">Three.js</span>
+        </div>
+        <div id="canvas-container" aria-label="Cubo mágico interativo"></div>
+        <p class="canvas-hint">Arraste ou use os botões de scramble/solve para brincar. Se não carregar, recarregue a página.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sobre</p>
+        <h2 class="section-title">Solucionando problemas com código e processos.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Desenvolvedor e Analista de Sistemas focado em automação, integrações e otimização de processos. Trabalho com .NET, C#, APIs REST, Dynamics 365 CRM, JavaScript e Power Platform para criar soluções escaláveis e personalizadas.
+          </p>
+          <p>
+            Da análise à entrega, passo por requisitos, documentação, testes e melhoria contínua. Gosto de transformar operações manuais em fluxos inteligentes que aumentam a eficiência do time.
+          </p>
+          <div class="personal-info">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>São Paulo — Brasil</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>emerson143.eo@gmail.com</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>11 94059-9486</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <p class="stat-number">+4 anos</p>
+            <p class="stat-label">Vivendo back-end e CRM</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-number">Integrações</p>
+            <p class="stat-label">APIs REST, Plugins, Workflows, Power Automate</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-number">Operações ágeis</p>
+            <p class="stat-label">Kanban, SLAs, monitoramento e sustentação</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Experiência</p>
+        <h2 class="section-title">Projetos que conectam tecnologia e operação.</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Em andamento</div>
+          <div class="timeline-content">
+            <h3>Analista / Desenvolvedor — Setec</h3>
+            <p>Atuação em desenvolvimento e análise de sistemas, sustentação e otimizações contínuas.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">01/2023 – 02/2025</div>
+          <div class="timeline-content">
+            <h3>Desenvolvedor Back-End — Softtek</h3>
+            <ul>
+              <li>Customização e desenvolvimento no Dynamics 365 CRM com C#, Plugins, Workflows, JavaScript e APIs.</li>
+              <li>Automação de relatórios estratégicos em Power BI e criação de fluxos no Power Automate.</li>
+              <li>Sustentação de sistemas legados, correções e implantação de melhorias.</li>
+              <li>Planejamento, refinamento e testes (unitários e integrados) com documentação técnica.</li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="tech-tags">
+              <span>C#</span><span>Dynamics 365</span><span>Power Platform</span><span>ASP.NET MVC</span><span>Git</span>
             </div>
+          </div>
         </div>
-    </nav>
 
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <p class="greeting">Olá, eu sou</p>
-            <h1>Emerson Oliveira</h1>
-            <h2>Desenvolvedor Back-End & Analista de Sistemas</h2>
-            <p class="bio-short">Foco em automação, integrações e otimização de processos com .NET, C# e Dynamics 365.</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/emerson-oliveira143/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Emerson143" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:emerson143.eo@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-            <a href="#contact" class="btn-primary">Entre em contato</a>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">02/2022 – 12/2022</div>
+          <div class="timeline-content">
+            <h3>Analista de Suporte N2 — Softtek</h3>
+            <ul>
+              <li>Suporte N2 com ServiceNow, monitoramento de SLAs e controle de ativos com MySQL.</li>
+              <li>Infraestrutura e criptografia com BitLocker, garantindo estabilidade e compliance.</li>
+            </ul>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">Sobre Mim</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>Desenvolvedor e Analista de Sistemas com foco em automação, integrações e otimização de processos, criando soluções escaláveis e eficientes. Experiência em .NET, C#, APIs REST, Dynamics 365 CRM, JavaScript, Power Platform, HTML e CSS, desenvolvendo aplicações personalizadas e fluxos automatizados para atender necessidades específicas do negócio.</p>
-                    <p>Trabalho com análise de requisitos, desenvolvimento, documentação, testes e melhoria contínua.</p>
-                    
-                    <div class="personal-info">
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>São Paulo – Brasil</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>emerson143.eo@gmail.com</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-phone"></i>
-                            <span>11 94059-9486</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Habilidades</p>
+        <h2 class="section-title">Stack que uso para entregar rápido e com qualidade.</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Back-End & .NET</h3>
+          <div class="skill-list">
+            <span>C#</span>
+            <span>VB.NET</span>
+            <span>.NET</span>
+            <span>ASP.NET MVC</span>
+            <span>APIs REST</span>
+          </div>
         </div>
-    </section>
-
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title">Experiência Profissional</h2>
-            <div class="timeline">
-                <!-- Setec -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Em andamento</div>
-                    <div class="timeline-content">
-                        <h3>Analista / Desenvolvedor</h3>
-                        <h4>Setec</h4>
-                        <p>Atuando no desenvolvimento e análise de sistemas.</p>
-                    </div>
-                </div>
-
-                <!-- Softtek Dev -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">01/2023 – 02/2025</div>
-                    <div class="timeline-content">
-                        <h3>Desenvolvedor Back-End</h3>
-                        <h4>Softtek</h4>
-                        <ul>
-                            <li>Customização e desenvolvimento no Dynamics 365 CRM usando C#, Plugins, Workflows, JavaScript, APIs, Power Automate.</li>
-                            <li>Suporte, manutenção e atendimento de chamados via ServiceNow.</li>
-                            <li>Criação e automação de relatórios estratégicos com Power BI.</li>
-                            <li>Sustentação de sistemas legados, melhorias e correções.</li>
-                            <li>Participação em planejamento, refinamentos e implantações.</li>
-                            <li>Testes unitários, integrados e documentação técnica.</li>
-                        </ul>
-                        <div class="tech-tags">
-                            <span>C#</span><span>Dynamics 365</span><span>Power Platform</span><span>ASP.NET MVC</span><span>Git</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Softtek Support -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">02/2022 – 12/2022</div>
-                    <div class="timeline-content">
-                        <h3>Analista de Suporte N2</h3>
-                        <h4>Softtek</h4>
-                        <ul>
-                            <li>Suporte N2 com ServiceNow.</li>
-                            <li>Controle e manutenção de ativos com MySQL.</li>
-                            <li>Monitoramento de SLAs.</li>
-                            <li>Suporte a infraestrutura e criptografia com BitLocker.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="skill-category">
+          <h3>Ecossistema Microsoft</h3>
+          <div class="skill-list">
+            <span>Dynamics 365 CRM</span>
+            <span>Power Platform</span>
+            <span>Power Automate</span>
+            <span>SharePoint</span>
+            <span>Power BI</span>
+            <span>Azure DevOps</span>
+          </div>
         </div>
-    </section>
-
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Habilidades</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Back-End & .NET</h3>
-                    <div class="skill-list">
-                        <span>C#</span>
-                        <span>VB.NET</span>
-                        <span>.NET</span>
-                        <span>ASP.NET MVC</span>
-                        <span>APIs REST</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Microsoft Ecosystem</h3>
-                    <div class="skill-list">
-                        <span>Dynamics 365 CRM</span>
-                        <span>Power Platform</span>
-                        <span>Power Automate</span>
-                        <span>SharePoint</span>
-                        <span>Power BI</span>
-                        <span>Azure DevOps</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Front-End</h3>
-                    <div class="skill-list">
-                        <span>JavaScript</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Database & Tools</h3>
-                    <div class="skill-list">
-                        <span>MySQL</span>
-                        <span>Git / GitHub</span>
-                        <span>GCP</span>
-                        <span>ServiceNow</span>
-                        <span>Kanban</span>
-                    </div>
-                </div>
-            </div>
+        <div class="skill-category">
+          <h3>Front-End</h3>
+          <div class="skill-list">
+            <span>JavaScript</span>
+            <span>HTML</span>
+            <span>CSS</span>
+          </div>
         </div>
-    </section>
-
-    <section id="education" class="section">
-        <div class="container">
-            <h2 class="section-title">Educação & Certificações</h2>
-            <div class="education-grid">
-                <div class="edu-card">
-                    <h3>Análise e Desenvolvimento de Sistemas</h3>
-                    <p class="institution">Centro Universitário FAM</p>
-                    <p class="date">06/2021 – 12/2023</p>
-                </div>
-                <div class="cert-card">
-                    <h3>Certificações</h3>
-                    <ul class="cert-list">
-                        <li>PL-900 – Microsoft Power Platform Fundamentals</li>
-                        <li>C# Completo – Udemy</li>
-                        <li>Java Completo – Udemy</li>
-                        <li>MySQL Developer Expert – Udemy</li>
-                        <li>Fundamentos de QA – Udemy</li>
-                        <li>Pacote Office Avançado – Telecentro</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="skill-category">
+          <h3>Dados & Operações</h3>
+          <div class="skill-list">
+            <span>MySQL</span>
+            <span>Git / GitHub</span>
+            <span>GCP</span>
+            <span>ServiceNow</span>
+            <span>Kanban</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Projetos</h2>
-            <p style="text-align: center; color: var(--text-secondary);">Confira mais no meu <a href="https://github.com/Emerson143" target="_blank" style="color: var(--primary);">GitHub</a></p>
-            <!-- Placeholder for projects if user wants to add specific ones later -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Formação</p>
+        <h2 class="section-title">Aprendizado contínuo para entregar melhor.</h2>
+      </div>
+      <div class="education-grid">
+        <div class="edu-card">
+          <h3>Análise e Desenvolvimento de Sistemas</h3>
+          <p class="institution">Centro Universitário FAM</p>
+          <p class="date">06/2021 – 12/2023</p>
         </div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Contato</h2>
-            <div class="contact-content">
-                <p>Estou disponível para novas oportunidades e desafios.</p>
-                <a href="mailto:emerson143.eo@gmail.com" class="btn-primary">Enviar Email</a>
-                <div class="contact-details">
-                    <p><i class="fas fa-phone"></i> 11 94059-9486</p>
-                    <p><i class="fas fa-map-marker-alt"></i> São Paulo – Brasil</p>
-                </div>
-            </div>
+        <div class="cert-card">
+          <h3>Certificações</h3>
+          <ul class="cert-list">
+            <li>PL-900 — Microsoft Power Platform Fundamentals</li>
+            <li>C# Completo — Udemy</li>
+            <li>Java Completo — Udemy</li>
+            <li>MySQL Developer Expert — Udemy</li>
+            <li>Fundamentos de QA — Udemy</li>
+            <li>Pacote Office Avançado — Telecentro</li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="fun-zone" class="section">
-        <div class="container">
-            <h2 class="section-title">Interactive Zone</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Interaja com o cubo!</p>
-            <div id="canvas-container"></div>
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Projetos</p>
+        <h2 class="section-title">Seleção rápida.</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <p class="eyebrow">Dynamics 365</p>
+          <h3>Plugins e automações</h3>
+          <p>Customizações, integrações e fluxos para agilizar operações de CRM.</p>
+          <a href="https://github.com/Emerson143" target="_blank" class="link-arrow">GitHub</a>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Emerson Oliveira. Todos os direitos reservados.</p>
+        <div class="project-card">
+          <p class="eyebrow">APIs REST</p>
+          <h3>Integrações escaláveis</h3>
+          <p>APIs seguras com .NET e documentação clara para squads consumirem rápido.</p>
+          <a href="https://github.com/Emerson143" target="_blank" class="link-arrow">Ver repositórios</a>
         </div>
-    </footer>
+        <div class="project-card">
+          <p class="eyebrow">Power Platform</p>
+          <h3>Dashboards e fluxos</h3>
+          <p>Power BI + Power Automate para monitorar, alertar e acionar times.</p>
+          <a href="https://github.com/Emerson143" target="_blank" class="link-arrow">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Three.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+  <section id="contact" class="section contact">
+    <div class="container contact-inner">
+      <div>
+        <p class="eyebrow">Contato</p>
+        <h2 class="section-title">Disponível para novas oportunidades e desafios.</h2>
+        <p class="lead">Conte sobre seu projeto ou time e vamos desenhar a solução juntos.</p>
+        <div class="contact-actions">
+          <a href="mailto:emerson143.eo@gmail.com" class="btn-primary">Enviar email</a>
+          <a href="https://www.linkedin.com/in/emerson-oliveira143/" target="_blank" class="btn-secondary">LinkedIn</a>
+        </div>
+      </div>
+      <div class="contact-details">
+        <div class="photo-frame contact-photo">
+          <img src="minha-foto.jpg" alt="Foto de Emerson Oliveira" />
+        </div>
+        <div class="contact-info">
+          <p><i class="fas fa-phone"></i> 11 94059-9486</p>
+          <p><i class="fas fa-map-marker-alt"></i> São Paulo — Brasil</p>
+          <p><i class="fas fa-envelope"></i> emerson143.eo@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Emerson Oliveira. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
