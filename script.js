@@ -1,4 +1,4 @@
-// Mobile menu
+﻿// Mobile menu
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
@@ -83,229 +83,219 @@ if (hamburger && navLinks) {
   draw();
 })();
 
-// Three.js Rubik-like cube with drag + shuffle fallback
-const initCube = () => {
+// Snake game (canvas)
+const bootSnake = () => {
   const container = document.getElementById('canvas-container');
-  if (!container) return;
-  if (typeof THREE === 'undefined') {
-    container.innerHTML = '<p style="padding:16px;text-align:center;color:#9fb0d7;">Ative o JavaScript/Three.js para brincar com o cubo.</p>';
-    return;
-  }
+  const scoreEl = document.getElementById('score');
+  const toggleBtn = document.getElementById('toggle-game');
+  if (!container || !scoreEl || !toggleBtn) return;
 
-  let renderer;
-  try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  } catch (e) {
-    container.innerHTML = '<p style="padding:16px;text-align:center;color:#9fb0d7;">Seu navegador não suporta WebGL. Tente outro para ver o cubo.</p>';
-    return;
-  }
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x050915);
-
-  const camera = new THREE.PerspectiveCamera(
-    60,
-    Math.max(container.clientWidth, 1) / Math.max(container.clientHeight, 1),
-    0.1,
-    100
-  );
-  camera.position.set(4, 3.2, 5.6);
-  camera.lookAt(0, 0, 0);
-
-  renderer.setSize(container.clientWidth || 400, container.clientHeight || 300);
-  renderer.setPixelRatio(window.devicePixelRatio);
   container.innerHTML = '';
-  container.appendChild(renderer.domElement);
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const message = document.createElement('div');
+  message.className = 'game-message';
+  container.appendChild(canvas);
+  container.appendChild(message);
 
-  const createFaceTexture = (baseColor) => {
-    const size = 256;
-    const face = document.createElement('canvas');
-    face.width = face.height = size;
-    const ctx = face.getContext('2d');
+  const config = {
+    cells: 20,
+    speed: 120
+  };
 
-    ctx.fillStyle = baseColor;
-    ctx.fillRect(0, 0, size, size);
+  let cellSize = 18;
+  let snake = [];
+  let dir = { x: 1, y: 0 };
+  let nextDir = { x: 1, y: 0 };
+  let food = { x: 12, y: 10 };
+  let score = 0;
+  let playing = false;
+  let gameOver = false;
+  let lastFrame = 0;
 
-    ctx.strokeStyle = 'rgba(0,0,0,0.35)';
-    ctx.lineWidth = 4;
-    const step = size / 3;
-    for (let i = 1; i < 3; i++) {
+  const setMessage = (text) => {
+    if (text) {
+      message.textContent = text;
+      message.classList.add('show');
+    } else {
+      message.textContent = '';
+      message.classList.remove('show');
+    }
+  };
+
+  const updateScore = () => {
+    scoreEl.textContent = score;
+  };
+
+  const resize = () => {
+    const size = Math.max(Math.min(container.clientWidth, 460), 260);
+    cellSize = Math.floor(size / config.cells);
+    const dim = cellSize * config.cells;
+    canvas.width = dim;
+    canvas.height = dim;
+    draw();
+  };
+
+  const placeFood = () => {
+    let spot;
+    do {
+      spot = {
+        x: Math.floor(Math.random() * config.cells),
+        y: Math.floor(Math.random() * config.cells)
+      };
+    } while (snake.some(part => part.x === spot.x && part.y === spot.y));
+    food = spot;
+  };
+
+  const resetGame = () => {
+    snake = [
+      { x: 8, y: 10 },
+      { x: 7, y: 10 },
+      { x: 6, y: 10 }
+    ];
+    dir = { x: 1, y: 0 };
+    nextDir = { x: 1, y: 0 };
+    score = 0;
+    updateScore();
+    placeFood();
+    gameOver = false;
+    playing = false;
+    setMessage('Pressione Iniciar ou Espaço');
+    draw();
+  };
+
+  const drawCell = (x, y, color) => {
+    ctx.fillStyle = color;
+    ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
+  };
+
+  const draw = () => {
+    ctx.fillStyle = '#050915';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 1;
+    for (let i = 1; i < config.cells; i++) {
       ctx.beginPath();
-      ctx.moveTo(step * i, 0);
-      ctx.lineTo(step * i, size);
+      ctx.moveTo(i * cellSize, 0);
+      ctx.lineTo(i * cellSize, canvas.height);
       ctx.stroke();
-
       ctx.beginPath();
-      ctx.moveTo(0, step * i);
-      ctx.lineTo(size, step * i);
+      ctx.moveTo(0, i * cellSize);
+      ctx.lineTo(canvas.width, i * cellSize);
       ctx.stroke();
     }
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-    ctx.lineWidth = 6;
-    ctx.strokeRect(4, 4, size - 8, size - 8);
+    const gradient = ctx.createRadialGradient(
+      food.x * cellSize + cellSize / 2,
+      food.y * cellSize + cellSize / 2,
+      2,
+      food.x * cellSize + cellSize / 2,
+      food.y * cellSize + cellSize / 2,
+      cellSize
+    );
+    gradient.addColorStop(0, '#7af08f');
+    gradient.addColorStop(1, '#2fb3ff');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize - 1, cellSize - 1);
 
-    return new THREE.CanvasTexture(face);
+    snake.forEach((part, idx) => {
+      const alpha = 0.8 - idx * 0.03;
+      drawCell(part.x, part.y, `rgba(91, 224, 255, ${Math.max(alpha, 0.35)})`);
+    });
   };
 
-  const faces = [
-    createFaceTexture('#ff5800'), // right
-    createFaceTexture('#0046ad'), // left
-    createFaceTexture('#009b48'), // top
-    createFaceTexture('#ffd500'), // bottom
-    createFaceTexture('#b71234'), // front
-    createFaceTexture('#ffffff')  // back
-  ];
+  const handleDirection = (x, y) => {
+    if (dir.x === -x && dir.y === -y) return;
+    nextDir = { x, y };
+  };
 
-  const neutralTex = createFaceTexture('#111827');
-  const cubies = [];
-  const group = new THREE.Group();
-  const positions = [-1, 0, 1];
-  const size = 0.62;
+  const step = (timestamp = 0) => {
+    if (playing && !gameOver && timestamp - lastFrame >= config.speed) {
+      lastFrame = timestamp;
+      dir = nextDir;
+      const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
 
-  positions.forEach(x => {
-    positions.forEach(y => {
-      positions.forEach(z => {
-        const geometry = new THREE.BoxGeometry(size, size, size);
-        const materials = [];
-        for (let i = 0; i < 6; i++) {
-          let tex = neutralTex;
-          // Face coloring logic based on cubie position (show color only on outer faces)
-          if (i === 0 && x === 1) tex = faces[0]; // right
-          if (i === 1 && x === -1) tex = faces[1]; // left
-          if (i === 2 && y === 1) tex = faces[2]; // top
-          if (i === 3 && y === -1) tex = faces[3]; // bottom
-          if (i === 4 && z === 1) tex = faces[4]; // front
-          if (i === 5 && z === -1) tex = faces[5]; // back
-          materials.push(new THREE.MeshStandardMaterial({ map: tex, roughness: 0.38, metalness: 0.08 }));
-        }
-        const cubelet = new THREE.Mesh(geometry, materials);
-        cubelet.position.set(x * size, y * size, z * size);
-        group.add(cubelet);
-        cubies.push(cubelet);
-      });
-    });
+      const hitWall = head.x < 0 || head.y < 0 || head.x >= config.cells || head.y >= config.cells;
+      const hitSelf = snake.some(part => part.x === head.x && part.y === head.y);
+
+      if (hitWall || hitSelf) {
+        playing = false;
+        gameOver = true;
+        setMessage('Game over! Espaço para reiniciar.');
+        draw();
+        requestAnimationFrame(step);
+        return;
+      }
+
+      snake.unshift(head);
+      if (head.x === food.x && head.y === food.y) {
+        score += 10;
+        updateScore();
+        placeFood();
+      } else {
+        snake.pop();
+      }
+
+      draw();
+    }
+
+    requestAnimationFrame(step);
+  };
+
+  const toggleGame = () => {
+    if (gameOver) {
+      resetGame();
+      playing = true;
+      setMessage('');
+      lastFrame = performance.now();
+      return;
+    }
+    playing = !playing;
+    setMessage(playing ? '' : 'Pausado');
+    if (playing) lastFrame = performance.now();
+  };
+
+  toggleBtn.addEventListener('click', toggleGame);
+
+  window.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'ArrowUp':
+      case 'w':
+      case 'W':
+        handleDirection(0, -1);
+        break;
+      case 'ArrowDown':
+      case 's':
+      case 'S':
+        handleDirection(0, 1);
+        break;
+      case 'ArrowLeft':
+      case 'a':
+      case 'A':
+        handleDirection(-1, 0);
+        break;
+      case 'ArrowRight':
+      case 'd':
+      case 'D':
+        handleDirection(1, 0);
+        break;
+      case ' ':
+        toggleGame();
+        break;
+      default:
+        break;
+    }
   });
 
-  group.position.set(0, 0, 0);
-  scene.add(group);
-
-  const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-  scene.add(ambient);
-
-  const point = new THREE.PointLight(0x7af08f, 1.4);
-  point.position.set(5, 5, 5);
-  scene.add(point);
-
-  const blueLight = new THREE.PointLight(0x5be0ff, 0.7);
-  blueLight.position.set(-4, -3, -4);
-  scene.add(blueLight);
-
-  let targetX = 0;
-  let targetY = 0;
-  let dragging = false;
-  let lastX = 0;
-  let lastY = 0;
-
-  const onPointerDown = (e) => {
-    dragging = true;
-    lastX = e.clientX;
-    lastY = e.clientY;
-  };
-
-  const onPointerUp = () => { dragging = false; };
-
-  const onPointerMove = (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    targetX = x * 0.0012;
-    targetY = y * 0.0012;
-
-    if (dragging) {
-      const dx = (e.clientX - lastX) * 0.01;
-      const dy = (e.clientY - lastY) * 0.01;
-      group.rotation.y += dx;
-      group.rotation.x += dy;
-      lastX = e.clientX;
-      lastY = e.clientY;
-    }
-  };
-
-  window.addEventListener('pointermove', onPointerMove);
-  container.addEventListener('pointerdown', onPointerDown);
-  window.addEventListener('pointerup', onPointerUp);
-
-  container.addEventListener('click', () => {
-    targetX += (Math.random() - 0.5) * 1.2;
-    targetY += (Math.random() - 0.5) * 1.2;
-  });
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-    group.rotation.y += (targetX - group.rotation.y) * 0.08;
-    group.rotation.x += (targetY - group.rotation.x) * 0.08;
-
-    if (!dragging) {
-      group.rotation.y += 0.003;
-      group.rotation.x += 0.002;
-    }
-
-    renderer.render(scene, camera);
-  };
-
-  animate();
-
-  const handleResize = () => {
-    const width = Math.max(container.clientWidth, 1);
-    const height = Math.max(container.clientHeight, 1);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-  };
-
-  window.addEventListener('resize', handleResize);
-  handleResize();
-};
-
-// Try to load a fully playable Rubik's cube (cubing.js); if it fails, use Three.js fallback
-const initGameCube = async () => {
-  const container = document.getElementById('canvas-container');
-  if (!container) return;
-  try {
-    const { TwistyPlayer } = await import('https://js.cubing.net/cubing/twisty/');
-    container.innerHTML = '';
-    const player = new TwistyPlayer({
-      puzzle: '3x3x3',
-      background: 'none',
-      controlPanel: 'simple',
-      hintFacelets: 'none',
-      tempo: 'medium',
-      stickerColors: {
-        U: '#ffffff',
-        R: '#ff5800',
-        F: '#009b48',
-        D: '#ffd500',
-        L: '#0046ad',
-        B: '#b71234'
-      },
-      visualization: '3D'
-    });
-    player.style.width = '100%';
-    player.style.height = '100%';
-    container.appendChild(player);
-  } catch (e) {
-    console.warn('TwistyPlayer não carregou; usando fallback Three.js.', e);
-    initCube();
-  }
-};
-
-const bootCube = () => {
-  initGameCube();
+  window.addEventListener('resize', resize);
+  resetGame();
+  resize();
+  requestAnimationFrame(step);
 };
 
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  bootCube();
+  bootSnake();
 } else {
-  window.addEventListener('DOMContentLoaded', bootCube);
+  window.addEventListener('DOMContentLoaded', bootSnake);
 }

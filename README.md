@@ -11,7 +11,7 @@ Este portfolio é uma Single Page Application (SPA) estática, construída com f
 ### ✨ Funcionalidades
 
 - **Design Responsivo**: Layout adaptável para desktops, tablets e dispositivos móveis.
-- **Interatividade 3D**: Um cubo mágico interativo desenvolvido com **Three.js** que responde ao cursor e toque.
+- **Mini game**: Jogo da cobrinha em canvas (setas/WASD, pausa com espaço).
 - **Animações**: Efeitos de partículas no background e transições suaves entre seções.
 - **Seções Detalhadas**:
   - **Home**: Apresentação impactante com resumo profissional.
@@ -26,7 +26,7 @@ Este portfolio é uma Single Page Application (SPA) estática, construída com f
 - **HTML5**: Estrutura semântica.
 - **CSS3**: Estilização avançada com variáveis CSS, Flexbox, Grid e animações.
 - **JavaScript (ES6+)**: Lógica de interação, menu mobile e manipulação do DOM.
-- **Three.js**: Biblioteca para renderização do elemento 3D (Cubo Mágico).
+- **Canvas API**: Anima��es e interatividade sem depend�ncias externas.
 - **FontAwesome**: Ícones vetoriais.
 - **Google Fonts**: Tipografia (Space Grotesk e Manrope).
 
@@ -51,7 +51,7 @@ Este é um projeto estático, então não requer instalação de dependências c
 /
 ├── index.html      # Estrutura principal
 ├── style.css       # Estilos e design system
-├── script.js       # Lógica e Three.js
+├── script.js       # L�gica do site e jogo da cobrinha
 └── README.md       # Documentação
 ```
 
@@ -64,3 +64,6 @@ Este é um projeto estático, então não requer instalação de dependências c
 
 ---
 © 2025 Emerson Oliveira. Todos os direitos reservados.
+
+
+

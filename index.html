@@ -67,17 +67,23 @@
           </div>
         </div>
       </div>
-      <div class="hero-canvas-card">
+            <div class="hero-canvas-card">
         <div class="card-header">
           <div>
             <p class="eyebrow">Interativo</p>
-            <h3>Cubo mágico 3D</h3>
+            <h3>Jogo da cobrinha</h3>
           </div>
-          <span class="badge">Three.js</span>
+          
         </div>
-        <div id="canvas-container" aria-label="Cubo mágico interativo"></div>
-        <p class="canvas-hint">Arraste ou use os botões de scramble/solve para brincar. Se não carregar, recarregue a
-          página.</p>
+        <div class="game-hud">
+          <div class="scoreboard">
+            <span>Pontos</span>
+            <strong id="score">0</strong>
+          </div>
+          <button id="toggle-game" class="btn-ghost" type="button">Iniciar</button>
+        </div>
+        <div id="canvas-container" aria-label="Jogo da cobrinha"></div>
+        <p class="canvas-hint">Use as setas ou W/A/S/D para mover. Espaço pausa ou reinicia.</p>
       </div>
     </div>
   </section>
@@ -334,9 +340,9 @@
       <p>&copy; 2025 Emerson Oliveira. Todos os direitos reservados.</p>
     </div>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 
 </html>
+
+
