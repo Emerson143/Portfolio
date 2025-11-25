@@ -20,8 +20,8 @@
 body {
     font-family: 'Space Grotesk', 'Manrope', system-ui, -apple-system, sans-serif;
     background: radial-gradient(circle at 20% 20%, rgba(91, 224, 255, 0.12), transparent 25%),
-                radial-gradient(circle at 80% 0%, rgba(192, 132, 252, 0.14), transparent 25%),
-                linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+        radial-gradient(circle at 80% 0%, rgba(192, 132, 252, 0.14), transparent 25%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
     color: var(--text);
     line-height: 1.7;
     min-height: 100vh;
@@ -33,7 +33,9 @@ a {
     text-decoration: none;
 }
 
-ul { list-style: none; }
+ul {
+    list-style: none;
+}
 
 .container {
     max-width: 1200px;
@@ -126,14 +128,17 @@ ul { list-style: none; }
 .pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 4px;
+    padding: 4px 8px;
+    /* MENOR */
     background: rgba(91, 224, 255, 0.1);
     color: var(--primary);
     border: 1px solid var(--border);
     border-radius: 999px;
-    font-size: 0.9rem;
-    letter-spacing: 0.02em;
+    font-size: 0.75rem;
+    /* MENOR */
+    letter-spacing: 0.01em;
+    /* Mais leve */
 }
 
 .hero h1 {
@@ -154,7 +159,8 @@ ul { list-style: none; }
     flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
     padding: 12px 20px;
     border-radius: 14px;
     font-weight: 600;
@@ -298,8 +304,8 @@ ul { list-style: none; }
     overflow: hidden;
     position: relative;
     background: radial-gradient(circle at 30% 30%, rgba(91, 224, 255, 0.12), transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.12), transparent 50%),
-                rgba(5, 9, 21, 0.8);
+        radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.12), transparent 50%),
+        rgba(5, 9, 21, 0.8);
     z-index: 1;
 }
 
@@ -499,14 +505,17 @@ ul { list-style: none; }
     gap: 16px;
 }
 
-.edu-card, .cert-card {
+.edu-card,
+.cert-card {
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 16px;
     background: rgba(255, 255, 255, 0.03);
 }
 
-.institution, .date, .cert-list {
+.institution,
+.date,
+.cert-list {
     color: var(--text-muted);
 }
 
@@ -529,8 +538,13 @@ ul { list-style: none; }
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
-.project-card h3 { margin: 6px 0 8px; }
-.project-card p { color: var(--text-muted); }
+.project-card h3 {
+    margin: 6px 0 8px;
+}
+
+.project-card p {
+    color: var(--text-muted);
+}
 
 .link-arrow {
     display: inline-flex;
@@ -561,13 +575,15 @@ ul { list-style: none; }
 }
 
 .contact-details {
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    display: grid;
-    gap: 14px;
-    align-content: start;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
 }
 
 .contact-details p {
@@ -577,13 +593,64 @@ ul { list-style: none; }
 }
 
 .contact-photo {
-    max-width: 220px;
-    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(91, 224, 255, 0.3);
+    box-shadow: 0 0 20px rgba(91, 224, 255, 0.2);
+}
+
+.contact-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .contact-info {
     display: grid;
-    gap: 10px;
+    gap: 16px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.contact-info i {
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
+}
+
+.quote-box {
+    margin-top: 24px;
+    border: 1px solid rgba(91, 224, 255, 0.15);
+    border-radius: 16px;
+    padding: 20px;
+    background: linear-gradient(145deg, rgba(91, 224, 255, 0.05), rgba(192, 132, 252, 0.05));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quote-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.quote-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    font-style: italic;
 }
 
 /* Footer */
@@ -613,7 +680,9 @@ footer {
         transform: translateY(0);
     }
 
-    .hamburger { display: flex; }
+    .hamburger {
+        display: flex;
+    }
 
     .about-grid,
     .contact-inner {
